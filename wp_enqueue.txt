@@ -10,3 +10,6 @@ function myespt_css_js() {
 }
 add_action('wp_enqueue_scripts', 'myespt_css_js');
 
+//if you want connect your css and js in header.php
+<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/assets/css/style.css">
+
