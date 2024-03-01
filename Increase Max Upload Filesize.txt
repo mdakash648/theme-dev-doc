@@ -1,0 +1,7 @@
+open your wordpress root folder.
+edit ".htaccess" file. if it not visible than turn on "hidden items"
+copy and pest this text.
+
+php_value upload_max_filesize 500M
+php_value post_max_size 500M
+php_value memory_limit 500M
