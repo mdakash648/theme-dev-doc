@@ -6,3 +6,4 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<?php echo get_site_url();//output: website url?>
