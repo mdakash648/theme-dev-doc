@@ -22,4 +22,49 @@ function menu_template() {
 }
 add_shortcode('special_offer', 'menu_template'); 
 
+
+//create excerpt
+function excerptByWordCount($text, $word_count = 5, $more = '...') {
+    // Matches tags and words
+    preg_match_all('/<[^>]+>|[^<>\s]+/', $text, $matches);
+    $words = $matches[0];
+    $openTags = [];
+    $wordCounter = 0;
+
+    $truncated = [];
+    foreach ($words as $word) {
+        // Check if the word is a tag
+        if (preg_match('/<(\w+)/', $word, $matchStart)) {
+            // Opening tag
+            array_push($openTags, $matchStart[1]);
+        } elseif (preg_match('/<\/(\w+)/', $word, $matchEnd)) {
+            // Closing tag, remove the last opened tag of the same type
+            $lastTag = array_pop($openTags);
+            if ($lastTag !== $matchEnd[1]) {
+                // In case of improperly nested tags, attempt to correct
+                $openTags = array_filter($openTags, function($tag) use ($matchEnd) {
+                    return $tag !== $matchEnd[1];
+                });
+            }
+        } else {
+            // Count non-tag words
+            $wordCounter++;
+        }
+        $truncated[] = $word;
+        if ($wordCounter >= $word_count) {
+            break;
+        }
+    }
+
+    $truncatedText = implode(' ', $truncated) . ($wordCounter >= $word_count ? $more : '');
+
+    // Close any unclosed tags
+    while (!empty($openTags)) {
+        $tag = array_pop($openTags);
+        $truncatedText .= "</$tag>";
+    }
+
+    return $truncatedText;
+}
+
 ?>
