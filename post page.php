@@ -8,6 +8,9 @@
     <?php the_category(', '); ?>
     <?php the_tags(', '); ?>
     <?php the_post_thumbnail_url(); ?>
+    <?php the_author();//print Display name publicly as name ?>
+    <?php the_author_meta('first_name');//last_name, nickname?>
+    
 <?php endwhile; 
 the_posts_pagination();
 else : ?>
@@ -56,6 +59,7 @@ endif;
 ==================================-->
 <?php
 $posts = get_posts(array(
+    'post_type' => 'project',
     'posts_per_page'   => 3, 
     'meta_key'       => 'price', 
     'orderby'          => 'date',//data, price,title

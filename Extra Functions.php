@@ -67,4 +67,14 @@ function excerptByWordCount($text, $word_count = 5, $more = '...') {
     return $truncatedText;
 }
 
+//How to display Breadcrumb.
+// install Breadcrumb NavXT plugin
+if ( function_exists('bcn_display') ) {
+    bcn_display();
+} 
+// display curunt page title
+wp_title();//output : »blog
+
+echo str_replace('»', '', wp_title('', false));//output : blog
+
 ?>
