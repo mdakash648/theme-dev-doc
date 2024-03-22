@@ -1,5 +1,8 @@
 <?php
 
+bloginfo('name');//website title display
+
+
 //filter only number from any text like bangladesh(50), india(40)
 function extractNumber($str) {
     // Regular expression to capture numbers with optional spaces and an optional plus sign
