@@ -36,9 +36,9 @@ echo $slug;
 <!--=================================
     custom post type posts display 
 ==================================-->
-<?php$args = array(
+<?php $args = array(
     'post_type' => 'project',
-    'posts_per_page' => 6 // Adjust the number of projects to display
+    'posts_per_page' => 6, // Adjust the number of projects to display
 );
 $project_query = new WP_Query($args);
 
